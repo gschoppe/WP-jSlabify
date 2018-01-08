@@ -27,7 +27,7 @@ Mixed Slabbing can provide the best of both worlds, allowing the algorithm to ma
 ```
 [slab element="a" ratio="2" href="https://www.google.com"]
 [slabline style="color: red;"]The curious incident[/slabline]
-of the dog ]in the night
+of the dog in the night
 [/slab]
 ```
 
