@@ -20,7 +20,7 @@
 .jslabify .slabbedtext.slabbreak-ellipsis {
 	display: block;
 	position: relative;
-	margin: 0 2em 1em;
+	margin: -.75em 2em 0.25em;
 	text-align: center;
 	line-height: 2em;
 }
@@ -46,9 +46,9 @@
 .jslabify .slabbedtext.slabbreak-arrow-left {
 	display: block;
 	position: relative;
-	margin: 1em;
+	margin: 2em 0 2em 2em;
 	margin-right: 0;
-	border-top: 1em solid;
+	border-top: 2em solid;
 }
 .jslabify .slabbedtext.slabbreak-arrow-left:before {
 	display: block;
@@ -62,21 +62,21 @@
 	position: absolute;
 	border-color: rgba(0, 0, 0, 0);
 	border-right-color: inherit;
-	border-width: 1em;
-	margin-top: -1.5em;
+	border-width: 2em;
+	margin-top: -3em;
 }
 
 .jslabify .slabbedtext.slabbreak-arrow-right {
 	display: block;
 	position: relative;
-	margin: 1em;
+	margin: 2em 2em 2em 0 ;
 	margin-left: 0;
-	border-top: 1em solid;
+	border-top: 2em solid;
 }
-.jslabify .slabbedtext.slabbreak-arrow-right:before {
+.jslabify .slabbedtext.slabbreak-arrow-right:after {
 	display: block;
 	content: " ";
-	right: 100%;
+	left: 100%;
 	top: 50%;
 	border: solid transparent;
 	content: " ";
@@ -85,15 +85,15 @@
 	position: absolute;
 	border-color: rgba(0, 0, 0, 0);
 	border-left-color: inherit;
-	border-width: 1em;
-	margin-top: -1.5em;
+	border-width: 2em;
+	margin-top: -3em;
 }
 
 .jslabify .slabbedtext.slabbreak-arrow-both {
 	display: block;
 	position: relative;
-	margin: 1em;
-	border-top: 1em solid;
+	margin: 2em;
+	border-top: 2em solid;
 }
 .jslabify .slabbedtext.slabbreak-arrow-both:before {
 	display: block;
@@ -107,8 +107,8 @@
 	position: absolute;
 	border-color: rgba(0, 0, 0, 0);
 	border-left-color: inherit;
-	border-width: 1em;
-	margin-top: -1.5em;
+	border-width: 2em;
+	margin-top: -3em;
 }
 .jslabify .slabbedtext.slabbreak-arrow-both:after {
 	display: block;
@@ -122,8 +122,8 @@
 	position: absolute;
 	border-color: rgba(0, 0, 0, 0);
 	border-right-color: inherit;
-	border-width: 1em;
-	margin-top: -1.5em;
+	border-width: 2em;
+	margin-top: -3em;
 }
 
 .jslabify .slabbedtext.slabbreak-thick-arrow-left {
@@ -208,35 +208,58 @@
 	margin: 1em 2em 1.5em;
 	border-top: 2em solid;
 }
-.jslabify .slabbedtext.slabbreak-banner:before {
-	display: block;
-	content: " ";
-	right: 100%;
-	top: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	border-color: inherit;
-	border-left-color: rgba(0, 0, 0, 0);
-	border-width: 1em;
-	margin-top: -1.5em;
-	margin-right: -0.5em;
-}
+.jslabify .slabbedtext.slabbreak-banner:before,
 .jslabify .slabbedtext.slabbreak-banner:after {
 	display: block;
 	content: " ";
-	left: 100%;
 	top: 50%;
+	margin-top: -1.5em;
 	border: solid transparent;
 	content: " ";
 	height: 0;
 	width: 0;
 	position: absolute;
-	border-color: inherit;
-	border-right-color: rgba(0, 0, 0, 0);
 	border-width: 1em;
-	margin-top: -1.5em;
+	border-color: inherit;
+}
+.jslabify .slabbedtext.slabbreak-banner:before {
+	right: 100%;
+	margin-right: -0.5em;
+	border-left-color: rgba(0, 0, 0, 0);
+}
+.jslabify .slabbedtext.slabbreak-banner:after {
+	left: 100%;
 	margin-left: -0.5em;
+	border-right-color: rgba(0, 0, 0, 0);
+}
+
+.jslabify .slabbedtext.slabbreak-banner-reverse {
+	display: block;
+	position: relative;
+	margin: 1.5em 2em 1em;
+	border-top: 2em solid;
+}
+.jslabify .slabbedtext.slabbreak-banner-reverse:before,
+.jslabify .slabbedtext.slabbreak-banner-reverse:after {
+	display: block;
+	content: " ";
+	top: 50%;
+	margin-top: -2.5em;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	border-width: 1em;
+	border-color: inherit;
+}
+.jslabify .slabbedtext.slabbreak-banner-reverse:before {
+	right: 100%;
+	margin-right: -0.5em;
+	border-left-color: rgba(0, 0, 0, 0);
+}
+.jslabify .slabbedtext.slabbreak-banner-reverse:after {
+	left: 100%;
+	margin-left: -0.5em;
+	border-right-color: rgba(0, 0, 0, 0);
 }
