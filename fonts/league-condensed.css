@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'LeagueGothicCondensed';
+  src: url('leaguegothic-condensedregular-webfont.woff2') format('woff2'),
+    url('leaguegothic-condensedregular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

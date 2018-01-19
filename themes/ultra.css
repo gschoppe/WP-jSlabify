@@ -1,0 +1,42 @@
+/*
+Theme Name: Ultra
+*/
+@import url('https://fonts.googleapis.com/css?family=Ultra');
+
+.jslabify.theme-ultra {
+	display: block;
+	position: relative;
+	margin: 20px auto;
+	padding: 15px 0;
+	max-width: 600px;
+	font-family: "Ultra";
+	line-height: 0.8;
+	text-transform: uppercase;
+	background-color: #fff;
+}
+
+.jslabify.theme-ultra .slabbreak-default {
+	display: block;
+	position: relative;
+	margin: -10px 10% 0;
+	text-align: center;
+	line-height: 25px;
+}
+.jslabify.theme-ultra .slabbreak-default:before {
+	content: "...";
+	position: relative;
+	display: inline-block;
+	background-color: #fff;
+	padding: 0 10px 10px;
+	z-index: 10;
+}
+.jslabify.theme-ultra .slabbreak-default:after {
+	content: ' ';
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	border-top: 5px solid;
+	z-index: 0;
+}
