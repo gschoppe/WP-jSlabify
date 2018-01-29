@@ -31,7 +31,7 @@ if( !class_exists('WPJSlabify') ) {
 			$this->plugin_dir = plugin_dir_path( __FILE__ );
 			$this->plugin_url = plugin_dir_url( __FILE__ );
 			add_filter( 'extra_wp_jslabify_custom_theme_headers', array( $this, 'wp_jslabify_custom_theme_headers' ) );
-			add_action( 'init', array( $this, 'enumerate_themes' ) );
+			add_action( 'init', array( $this, 'init' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_resources' ) );
 			add_action( 'wp_footer', array( $this, 'maybe_do_js' ) );
 			add_shortcode( 'slab', array( $this, 'shortcode_slab' ) );
@@ -48,7 +48,7 @@ if( !class_exists('WPJSlabify') ) {
 			$this->do_js = true;
 			$atts = shortcode_atts( array(
 				'element' => 'div',
-				'ratio'   => '1',
+				'ratio'   => get_option( 'jslabify_default_ratio' ),
 				'hcenter' => 'false',
 				'vcenter' => 'false',
 				'force'   => 'false',
@@ -58,8 +58,12 @@ if( !class_exists('WPJSlabify') ) {
 				'href'    => '',
 				'title'   => '',
 				'target'  => '',
-				'theme'   => ''
+				'theme'   => get_option( 'jslabify_default_theme' )
 			), $atts, 'slab' );
+
+			if( !$atts['ratio'] ) {
+				$atts['ratio'] = '1';
+			}
 
 			// handle theme
 			if( $atts['theme'] ) {
@@ -151,17 +155,19 @@ if( !class_exists('WPJSlabify') ) {
 				'id'      => '',
 				'class'   => '',
 				'style'   => '',
-				'type'    => 'default'
+				'type'    => get_option( 'jslabify_default_divider' )
 			), $atts, 'slabline' );
 
 			if( !$this->in_slab || $this->in_line ) {
 				return $content;
 			}
 
-			if( $atts['type'] ) {
-				$atts['class'] = trim( 'slabbreak-' . sanitize_title( $atts['type'] ) . ' ' . $atts['class'] );
-				unset( $atts['type'] );
+			if( !$atts['type'] ) {
+				$atts['type'] = 'default';
 			}
+
+			$atts['class'] = trim( 'slabbreak-' . sanitize_title( $atts['type'] ) . ' ' . $atts['class'] );
+			unset( $atts['type'] );
 
 			// add the standard class
 			$atts['class'] = trim( 'slabbedtext ' . $atts['class'] );
@@ -228,27 +234,32 @@ if( !class_exists('WPJSlabify') ) {
 			return $headers;
 		}
 
+		public function init() {
+			$this->enumerate_themes();
+			require_once( $this->plugin_dir . '/includes/admin-options.php' );
+		}
+
 		public function enumerate_themes() {
-			if( $this->themes ) {
-				return;
+			if( !$this->themes ) {
+				$template_dir = get_template_directory();
+				$stylesheet_dir = get_stylesheet_directory();
+				$theme_directories = array(
+					$this->plugin_dir . 'themes' => $this->plugin_url . 'themes'
+				);
+				$additional_dirs = apply_filters( 'jslabify-theme-folders', array() );
+				$theme_directories = array_merge( $theme_directories, $additional_dirs );
+				$theme_directories[ $template_dir . '/wp-jslabify' ] = get_template_directory_uri() . '/wp-jslabify';
+				if( $template_dir != $stylesheet_dir ) {
+					$theme_directories[ $stylesheet_dir . '/wp-jslabify' ] = get_stylesheet_directory_uri() . '/wp-jslabify';
+				}
+				$themes = array();
+				foreach( $theme_directories as $path=>$url ) {
+					$theme_set = $this->scan_folder_for_themes( $path, $url );
+					$themes = array_merge( $themes, $theme_set );
+				}
+				$this->themes = $themes;
 			}
-			$template_dir = get_template_directory();
-			$stylesheet_dir = get_stylesheet_directory();
-			$theme_directories = array(
-				$this->plugin_dir . 'themes' => $this->plugin_url . 'themes'
-			);
-			$additional_dirs = apply_filters( 'jslabify-theme-folders', array() );
-			$theme_directories = array_merge( $theme_directories, $additional_dirs );
-			$theme_directories[ $template_dir . '/wp-jslabify' ] = get_template_directory_uri() . '/wp-jslabify';
-			if( $template_dir != $stylesheet_dir ) {
-				$theme_directories[ $stylesheet_dir . '/wp-jslabify' ] = get_stylesheet_directory_uri() . '/wp-jslabify';
-			}
-			$themes = array();
-			foreach( $theme_directories as $path=>$url ) {
-				$theme_set = $this->scan_folder_for_themes( $path, $url );
-				$themes = array_merge( $themes, $theme_set );
-			}
-			$this->themes = $themes;
+			return $this->themes;
 		}
 
 		private function scan_folder_for_themes( $path, $url ) {

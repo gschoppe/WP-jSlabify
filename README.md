@@ -3,6 +3,8 @@ Create beautiful Slabbed typography effects, right from the WordPress editor.
 
 ## Examples
 ![Sample Slabs created with WP jSlabify](https://i.imgur.com/VWx382O.png "Examples")
+![The shortcodes used to create the slabs above](https://i.imgur.com/e3Nd2Hc.png "Example Code")
+
 
 ## Usage
 ### Meet The Shortcodes

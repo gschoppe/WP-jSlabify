@@ -46,7 +46,7 @@
 .jslabify .slabbedtext.slabbreak-arrow-left {
 	display: block;
 	position: relative;
-	margin: 2em 0 2em 2em;
+	margin: 2em;
 	margin-right: 0;
 	border-top: 2em solid;
 }
@@ -69,7 +69,7 @@
 .jslabify .slabbedtext.slabbreak-arrow-right {
 	display: block;
 	position: relative;
-	margin: 2em 2em 2em 0 ;
+	margin: 2em;
 	margin-left: 0;
 	border-top: 2em solid;
 }
@@ -106,7 +106,7 @@
 	width: 0;
 	position: absolute;
 	border-color: rgba(0, 0, 0, 0);
-	border-left-color: inherit;
+	border-right-color: inherit;
 	border-width: 2em;
 	margin-top: -3em;
 }
@@ -121,9 +121,64 @@
 	width: 0;
 	position: absolute;
 	border-color: rgba(0, 0, 0, 0);
-	border-right-color: inherit;
+	border-left-color: inherit;
 	border-width: 2em;
 	margin-top: -3em;
+}
+
+.jslabify .slabbedtext.slabbreak-west-arrow-left {
+	display: block;
+	position: relative;
+	margin: 2em;
+	margin-right: 2.2em;
+	border-top: 0.5em solid;
+}
+.jslabify .slabbedtext.slabbreak-west-arrow-left:before,
+.jslabify .slabbedtext.slabbreak-west-arrow-left:after {
+	display: block;
+	font-size: 4em;
+	top: 50%;
+	height: 0;
+	width: 0;
+	position: absolute;
+	margin-top: -0.42em;
+	letter-spacing: -0.45em;
+}
+.jslabify .slabbedtext.slabbreak-west-arrow-left:before {
+	content: "<";
+	left: -.1em;
+}
+.jslabify .slabbedtext.slabbreak-west-arrow-left:after {
+	content: "<<<<<";
+	right: 0.6em;
+}
+
+
+.jslabify .slabbedtext.slabbreak-west-arrow-right {
+	display: block;
+	position: relative;
+	margin: 2em;
+	margin-left: 2.2em;
+	border-top: 0.5em solid;
+}
+.jslabify .slabbedtext.slabbreak-west-arrow-right:before,
+.jslabify .slabbedtext.slabbreak-west-arrow-right:after {
+	display: block;
+	font-size: 4em;
+	top: 50%;
+	height: 0;
+	width: 0;
+	position: absolute;
+	margin-top: -0.42em;
+	letter-spacing: -0.45em;
+}
+.jslabify .slabbedtext.slabbreak-west-arrow-right:before {
+	content: ">>>>>";
+	left: -0.2em;
+}
+.jslabify .slabbedtext.slabbreak-west-arrow-right:after {
+	content: ">";
+	right: .4em;
 }
 
 .jslabify .slabbedtext.slabbreak-thick-arrow-left {
