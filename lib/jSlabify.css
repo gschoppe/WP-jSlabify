@@ -17,6 +17,25 @@
 }
 
 /* separators */
+.jslabify .slabbedtext.slabbreak-line {
+	display: block;
+	position: relative;
+	margin: -.75em 0 0.25em;
+	text-align: center;
+	height: 2em;
+}
+.jslabify .slabbedtext.slabbreak-line:before {
+	content: ' ';
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	border-top: 0.5em solid;
+	z-index: 0;
+	transform: translateY(-50%);
+}
+
 .jslabify .slabbedtext.slabbreak-ellipsis {
 	display: block;
 	position: relative;
@@ -41,6 +60,7 @@
 	right: 0;
 	border-top: 0.25em solid;
 	z-index: 0;
+	transform: translateY(-50%);
 }
 
 .jslabify .slabbedtext.slabbreak-arrow-left {

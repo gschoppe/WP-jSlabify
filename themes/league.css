@@ -54,4 +54,6 @@ Slug: league
 	right: 0;
 	border-top: 0.25em solid;
 	z-index: 0;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
